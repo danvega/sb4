@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: sb4
+  artemis:
+    mode: embedded
+    embedded:
+      enabled: true
+      queues: notification-queue
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    dev.danvega.sb4.httpinterfaceclients: DEBUG
+    org.springframework.web.client: DEBUG
+
+server:
+  port: 8080
+
+app:
+  message-type: email
