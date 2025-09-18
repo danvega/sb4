@@ -44,6 +44,7 @@ This is a Spring Boot 4.0.0-M2 demo project showcasing new features in Spring Bo
 - **`bean_registration/`** - Programmatic Bean Registration with MessageServiceRegistrar
 - **`api_versioning/`** - API versioning with V1/V2 response models
 - **`jms_client/`** - JMS Client implementation using Apache Artemis
+- **`resilience/`** - Core resilience features with @Retryable and @ConcurrencyLimit annotations
 
 ## Technology Stack
 
@@ -89,6 +90,12 @@ Implements JMS messaging using Apache Artemis with producer and consumer.
 - **Endpoints**: `/api/notifications` - Send and receive notifications
 - **Key Files**: `NotificationProducer.java`, `NotificationConsumer.java`
 - **Queue**: `notification.queue`
+
+### 6. Core Resilience Features (`resilience/`)
+Demonstrates Spring Framework 7's built-in resilience features without external dependencies.
+- **Endpoints**: `/api/resilience/**` - Simple database operations with resilience patterns
+- **Key Files**: `DatabaseService.java`, `ResilienceDemoController.java`, `ResilienceConfig.java`
+- **Features**: @Retryable with exponential backoff, @ConcurrencyLimit for resource control
 
 ## Development Notes
 

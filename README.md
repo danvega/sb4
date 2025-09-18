@@ -1,73 +1,98 @@
-# What's new in Spring Boot 4
+# Spring Boot 4 Demo Project
 
-This is a collection of working code examples demonstrating new features in Spring Boot 4.0.0-M2. Each tutorial includes fully implemented examples with comprehensive tests.
+A comprehensive demonstration of Spring Boot 4.0.0-M2 features using Java 24 and Maven.
 
-## Implemented Tutorials
+## Features Demonstrated
 
-### ✅ JSpecify Null Safety
-- **Package**: `null_safety/`
-- **Endpoint**: `GET/POST /api/users`
-- **Features**: Package-level @NullMarked annotations, null-safe operations
-- **Try it**: `curl http://localhost:8080/api/users`
+### 1. JSpecify Null Safety (`null_safety/`)
+JSpecify null safety annotations with package-level @NullMarked annotation.
+- **Endpoints**: `/api/users` - User CRUD operations with null safety
+- **Key Files**: `package-info.java`, `UserController.java`, `UserService.java`
 
-### ✅ HTTP Interface Clients
-- **Package**: `http_interface_clients/`
-- **Endpoint**: `GET /api/todos`
-- **Features**: Declarative HTTP clients with @HttpExchange, replacing RestTemplate
-- **Try it**: `curl http://localhost:8080/api/todos`
+### 2. HTTP Interface Clients (`http_interface_clients/`)
+Declarative HTTP clients using @HttpExchange annotations, replacing RestTemplate/WebClient.
+- **Endpoints**: `/api/todos` - Todo operations using interface clients
+- **Key Files**: `TodoService.java` (interface), `TodoController.java`
+- **External API**: JSONPlaceholder for demo data
 
-### ✅ Programmatic Bean Registration
-- **Package**: `bean_registration/`
-- **Endpoint**: `GET /api/messages`
-- **Features**: Dynamic bean registration using ImportBeanDefinitionRegistrar
-- **Try it**: `curl http://localhost:8080/api/messages`
+### 3. Programmatic Bean Registration (`bean_registration/`)
+Programmatic bean registration using ImportBeanDefinitionRegistrar.
+- **Endpoints**: `/api/messages` - Message service with different implementations
+- **Key Files**: `MessageServiceRegistrar.java`, `ModernConfig.java`
+- **Services**: Email and SMS message services
 
-### ✅ API Versioning
-- **Package**: `api_versioning/`
-- **Endpoint**: `GET /api/products`
-- **Features**: Content negotiation-based versioning with different response models
-- **Try it**:
-  - V1: `curl -H "Accept: application/vnd.api.v1+json" http://localhost:8080/api/products`
-  - V2: `curl -H "Accept: application/vnd.api.v2+json" http://localhost:8080/api/products`
+### 4. API Versioning (`api_versioning/`)
+Content negotiation-based API versioning with different response models.
+- **Endpoints**: `/api/products` - Products with V1/V2 response formats
+- **Key Files**: `ProductController.java`, `ProductV1Response.java`, `ProductV2Response.java`
+- **Headers**: `Accept: application/vnd.api.v1+json` or `application/vnd.api.v2+json`
 
-### ✅ JMS Client
-- **Package**: `jms_client/`
-- **Endpoint**: `POST /api/notifications`
-- **Features**: Apache Artemis integration with producer/consumer pattern
-- **Try it**: `curl -X POST -H "Content-Type: application/json" -d '{"message":"Hello JMS"}' http://localhost:8080/api/notifications`
+### 5. JMS Client (`jms_client/`)
+JMS messaging using Apache Artemis with producer and consumer.
+- **Endpoints**: `/api/notifications` - Send and receive notifications
+- **Key Files**: `NotificationProducer.java`, `NotificationConsumer.java`
+- **Queue**: `notification.queue`
 
-## Technology Stack
+### 6. Core Resilience Features (`resilience/`)
+Built-in resilience features with @Retryable and @ConcurrencyLimit annotations - no external libraries needed!
+- **Endpoints**: `/api/resilience/**` - Database operations demonstrating resilience patterns
+- **Key Files**: `DatabaseService.java`, `ResilienceDemoController.java`, `ResilienceConfig.java`
+- **Features**: Automatic retry with exponential backoff, concurrency limiting, fault tolerance
 
-- **Spring Boot**: 4.0.0-M2 (Milestone Release)
-- **Java**: 24
-- **Build Tool**: Maven with wrapper
-- **Message Broker**: Apache Artemis (embedded)
-- **Testing**: Spring Boot Test with comprehensive test coverage
+## Quick Start
 
-## Getting Started
+### Prerequisites
+- Java 24
+- Maven 3.9+
 
+### Running the Application
 ```bash
-# Run the application
 ./mvnw spring-boot:run
+```
 
-# Run tests
-./mvnw test
-
-# Build the project
+### Building
+```bash
+./mvnw clean compile
 ./mvnw clean package
 ```
 
+### Testing
+```bash
+./mvnw test
+./mvnw verify
+```
+
+## Technology Stack
+
+- **Java**: 24
+- **Spring Boot**: 4.0.0-M2 (milestone release)
+- **Build Tool**: Maven with wrapper
+- **Dependencies**: Web, Actuator, RestClient, Artemis JMS, DevTools, Test
+
 ## Project Structure
 
-Each tutorial is organized in its own package under `src/main/java/dev/danvega/sb4/`:
-- `null_safety/` - JSpecify demonstrations
-- `http_interface_clients/` - HTTP client interfaces
-- `bean_registration/` - Programmatic bean configuration
-- `api_versioning/` - API versioning patterns
-- `jms_client/` - JMS messaging examples
+```
+src/main/java/dev/danvega/sb4/
+├── Application.java                    # Main Spring Boot application
+├── api_versioning/                     # Content negotiation API versioning
+├── bean_registration/                  # Programmatic bean registration
+├── http_interface_clients/             # Declarative HTTP clients
+├── jms_client/                        # JMS messaging with Artemis
+├── null_safety/                       # JSpecify null safety annotations
+└── resilience/                        # Core resilience features
+```
 
-## Future Tutorials
+## Key Spring Boot 4 Features
 
-Potential additions for future Spring Boot 4 features:
-- Core Resiliency Features
-- Additional JDK 24/25 integrations 
+- **Zero external dependencies for resilience** - @Retryable and @ConcurrencyLimit built into Spring Framework 7
+- **Enhanced HTTP clients** - @HttpExchange declarative interfaces
+- **Improved null safety** - JSpecify annotations with @NullMarked packages
+- **Flexible bean registration** - Programmatic registration with ImportBeanDefinitionRegistrar
+- **Advanced API versioning** - Content negotiation with custom media types
+- **Enterprise messaging** - JMS client with embedded Apache Artemis
+
+## Development Notes
+
+This project uses Spring Boot DevTools for hot reloading and includes Actuator endpoints for monitoring. Each feature demonstration includes comprehensive tests and follows real-world usage patterns.
+
+For detailed implementation guidance, see `CLAUDE.md`.
