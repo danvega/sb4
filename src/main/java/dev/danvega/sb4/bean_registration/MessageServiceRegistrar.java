@@ -2,6 +2,7 @@ package dev.danvega.sb4.bean_registration;
 
 import org.springframework.beans.factory.BeanRegistrar;
 import org.springframework.beans.factory.BeanRegistry;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 
 /**

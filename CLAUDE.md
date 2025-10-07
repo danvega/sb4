@@ -80,10 +80,13 @@ Demonstrates programmatic bean registration using ImportBeanDefinitionRegistrar.
 - **Services**: Email and SMS message services
 
 ### 4. API Versioning (`api_versioning/`)
-Shows content negotiation-based API versioning with different response models.
-- **Endpoints**: `/api/products` - Products with V1/V2 response formats
-- **Key Files**: `ProductController.java`, `ProductV1Response.java`, `ProductV2Response.java`
-- **Headers**: `Accept: application/vnd.api.v1+json` or `application/vnd.api.v2+json`
+Demonstrates Spring Framework 7's first-class API versioning support using the new `version` attribute in request mappings.
+- **Endpoints**: `/api/users` - User operations with V1/V2 response formats
+- **Key Files**: `ApiVersioningUserController.java`, `UserDTOv1.java`, `UserDTOv2.java`, `ApiVersioningConfig.java`
+- **Strategy**: Media Type Parameter Versioning via `Accept: application/json;version=1.0` or `version=2.0`
+- **Evolution Example**: V1 uses single `name` field, V2 uses separate `firstName` and `lastName` fields
+- **Features**: Deprecation headers for V1, configurable via `configureApiVersioning()` in WebMvcConfigurer
+- **Blog Post**: https://www.danvega.dev/blog/spring-boot-4-api-versioning
 
 ### 5. JMS Client (`jms_client/`)
 Implements JMS messaging using Apache Artemis with producer and consumer.
