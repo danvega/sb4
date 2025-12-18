@@ -34,7 +34,7 @@ https://youtu.be/CT1wGTwOfg0
 ### @Retryable with Exponential Backoff
 ```java
 @Retryable(
-    maxAttempts = 4,
+    maxRetries = 4,
     delay = 500,
     multiplier = 2.0,  // 500ms, 1s, 2s, 4s
     maxDelay = 5000,
@@ -57,7 +57,7 @@ public String performHeavyOperation(String taskId) {
 ### Combined Patterns
 ```java
 @ConcurrencyLimit(1)
-@Retryable(maxAttempts = 2, delay = 1000)
+@Retryable(maxRetries = 2, delay = 1000)
 public String criticalOperation(String operationId) {
     // Single-threaded execution with automatic retry
 }
